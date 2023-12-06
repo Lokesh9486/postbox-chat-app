@@ -23,6 +23,7 @@ import dummyprofile from "../../../../public/images/dummyprofile.png";
 import { socket } from "@/utils/socket";
 import { getViewUserAction, viewUserAction } from "@/features/auth";
 import { useDispatch, useSelector } from "react-redux";
+import { DropDown } from "@/components/DropDown";
 
 export default function Home() {
   const ulElement = useRef(null);
@@ -258,33 +259,10 @@ export default function Home() {
               return (
                 <li key={index} className={!isAnOtherUser?"isAnotherUser":""}>
                  {!isAnOtherUser&&
-                  <div className="dropdown">
-                    <button
-                      type="button"
-                      className="more-btn dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-three-dots-vertical"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                      </svg>
-                    </button>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <button
-                          type="button"
-                          onClick={() =>deleteMessage(_id)}
-                        >
-                          <p>Delete</p> {/* <img src={trash} alt="trash" /> */}
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
+                  <DropDown>
+                  <DropDown.Header></DropDown.Header>
+                  <DropDown.Body value={["Delete"]}></DropDown.Body>
+              </DropDown>
                  }
                   <Image
                     className="chat-user-profile"
